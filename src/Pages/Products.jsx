@@ -56,14 +56,14 @@ const ProductsPage = ({token}) => {
         setSortBy(e.target.value);
     }
 
-    function addToCart(product) {
-      const existingItem = cart.find(item => item.id === product.id);
+  function addToCart(product) {
+    const existingItem = cart.find(item => item.id === product.id);
 
-  if (existingItem) {
+    if (existingItem) {
       // If the item already exists in the cart, increment its quantity
       existingItem.quantity += 1;
       setCart([...cart]); // Update the cart with the modified item
-  } else {
+   }else {
       // If the item is not in the cart, add it with quantity 1
       const cartItem = {
           ...product,
@@ -103,7 +103,7 @@ const ProductsPage = ({token}) => {
       }, [selectedCategory, priceRange, sortBy, products]);
 
       function handleAddToCart(product) {
-        addToCart(product); // Use the addToCart function from the context
+        addToCart(product); // Use the addToCart 
       }
 
       return (
