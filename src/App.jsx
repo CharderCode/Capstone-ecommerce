@@ -11,16 +11,15 @@ import './App.css'
 
 
 function App() {
-
-
+  const [token, setToken] = useState(localStorage.getItem('token'));
   return (
     <CartProvider>
       <div>
-          <NavBar  />
+          <NavBar token={token} setToken={setToken}/>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home token={token} />} />
+            <Route path="/products" element={<Products token={token}/>} />
+            <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>

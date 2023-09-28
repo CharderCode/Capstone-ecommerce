@@ -39,6 +39,7 @@ const Register= () => {
   return (
     <Container className="register-container">
       <h2 className="text-center">Register</h2>
+      <h3 style={{color: '#007bff'}}>Currently Under Maintenance</h3>
       <Form className="register-form">
         <Form.Group controlId="username">
           <Form.Label>Username</Form.Label>

@@ -8,9 +8,11 @@ import NavBar from "../component/NavBar";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useNavigate } from "react-router-dom";
 
 
-const ProductsPage = () => {
+const ProductsPage = ({token}) => {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -19,6 +21,10 @@ const ProductsPage = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     const { cart, setCart } = useCart();
+
+    if (!token) {
+      navigate('/');
+    } 
 
     useEffect(() => {
       async function fetchData() {
@@ -65,6 +71,7 @@ const ProductsPage = () => {
       }
       setCart([...cart, cartItem]); // Add the new item to the cart
   }
+  localStorage.setItem('cart', cart);
 }
 
     function sortByPrice(ascending) {
@@ -103,18 +110,18 @@ const ProductsPage = () => {
         <div className="center-container">
             <div className="sidebar">
                 <h2>Filter & Sort</h2>
-                <FilterOptions
+                {token && <FilterOptions
                     categories={categories}
                     selectedCategory={selectedCategory}
                     priceRange={priceRange}
                     onCategoryChange={selectCategory}
                     onPriceRangeChange={onPriceRangeChange}
-                />
-                <SortingOptions sortBy={sortBy} onSortChange={selectSortBy} />
+                />}
+                {token && <SortingOptions sortBy={sortBy} onSortChange={selectSortBy} />}
             </div>
             <div className="product-list-center">
-                <h1>Products</h1>
-                <ProductList products={filteredProducts} addToCart={handleAddToCart} />
+                {token && <h1>Products</h1>}
+                {token && <ProductList products={filteredProducts} addToCart={handleAddToCart} />}
             </div>
         </div>
     );

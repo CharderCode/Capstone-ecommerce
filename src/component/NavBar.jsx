@@ -96,8 +96,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartDropdown from './CartDropdown'; // Import the CartDropdown component
 import { useCart } from "../component/CartContext";
 import cartImage from '../images/shopping-cart.png';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({token, setToken}) => {
+  const navigate = useNavigate();
   const [cartDropdownOpen, setCartDropdownOpen] = useState(false);
   const { cart, removeItemFromCart } = useCart();
 
@@ -107,6 +110,11 @@ const NavBar = () => {
     setCartDropdownOpen(!cartDropdownOpen); // Toggle the dropdown visibility
   };
 
+  function logout(){
+    setToken(null);
+    localStorage.removeItem('token');
+    navigate('/');
+  }
 
   return (
     <Navbar bg="light" expand="lg" className="custom-navbar">
@@ -114,12 +122,12 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/login" style={{ marginLeft: '50px'}}>Login</Nav.Link>
-          <Nav.Link href="/register">Register</Nav.Link>
-          <Nav.Link href="/profile">Profile</Nav.Link>
-          <Nav.Link href="/products" >Products</Nav.Link>
+          {token && <Nav.Link href="/products" style={{ marginLeft: '50px'}}>Products</Nav.Link>}
+          {token && <Nav.Link href="/profile">Profile</Nav.Link>}
+          {!token && <Nav.Link href="/login" >Login</Nav.Link>}
+          {!token && <Nav.Link href="/register" style={{ marginRight: '20px'}}>Register</Nav.Link>}       
         </Nav>
-        
+          {token && <Nav className='navbar-logout-button'><Button onClick={logout}>Logout</Button></Nav>}
           <NavDropdown title={       
               <span>
                 <img src={cartImage} alt="Cart" style={{ marginRight: '10px', maxWidth:'20px'}} />
