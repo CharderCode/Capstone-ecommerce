@@ -238,3 +238,28 @@ h1 {
     text-align: center;
     margin-top: 20px;
   }
+
+  /* Center the content vertically and horizontally */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+}
+
+/* Style the welcome message */
+.welcome-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style the Home page's login button */
+.home-login-button {
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
