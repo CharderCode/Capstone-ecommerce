@@ -108,7 +108,7 @@ export const loginUser = async (username, password) => {
     )
   });
       const result = await response.json();
-      console.log(result)
+      return result;
     } catch(err){
       console.error(err);
     }

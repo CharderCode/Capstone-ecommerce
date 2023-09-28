@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { loginUser } from '../API';
 
 
-const Login = () => {
+
+const Login = ({token, setToken}) => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState(null);
@@ -14,14 +17,15 @@ const Login = () => {
 
   async function handleClick(event) {
     event.preventDefault();
-    try {
-      const result = await loginUser(username, password); // Use the loginUser function
-      console.log(result);
-      setSuccessMessage(result.message);
-    } catch (error) {
-      setError(error.message);
-    }
+      const token = await loginUser(username, password); // Use the loginUser function
+      setToken(token);
+      localStorage.setItem('token', token);
+      navigate('/products'); 
   }
+  console.log('Token After Login:' + token);
+  if (token) {
+    navigate('/products');
+  } 
 
   return (
     <Container className="login-container">
