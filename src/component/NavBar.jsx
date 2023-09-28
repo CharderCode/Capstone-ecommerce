@@ -117,6 +117,7 @@ const NavBar = () => {
           <Nav.Link href="/login" style={{ marginLeft: '50px'}}>Login</Nav.Link>
           <Nav.Link href="/register">Register</Nav.Link>
           <Nav.Link href="/profile">Profile</Nav.Link>
+          <Nav.Link href="/products" >Products</Nav.Link>
         </Nav>
         
           <NavDropdown title={       

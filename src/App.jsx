@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import Home from './Pages/Home';
 import Products from './Pages/Products'
 import NavBar from './component/NavBar'
 import Login from './Pages/Login';
@@ -17,7 +18,8 @@ function App() {
       <div>
           <NavBar  />
           <Routes>
-            <Route path="/" element={<Products />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
