@@ -8,7 +8,7 @@ import { loginUser } from '../API';
 
 
 
-const Login = ({token, setToken}) => {
+const Login = ({token, setToken, setUserProfile}) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,14 +17,20 @@ const Login = ({token, setToken}) => {
 
   async function handleClick(event) {
     event.preventDefault();
-      const token = await loginUser(username, password); // Use the loginUser function
-      setToken(token);
-      localStorage.setItem('token', token);
-      navigate('/products'); 
+    try{
+      const user = await loginUser(username, password); // Use the loginUser function
+      setToken(user.token);
+      //localStorage.setItem('token', token);
+      localStorage.setItem('token', user.token);
+      setUserProfile(user);
+      navigate('/profile'); 
+    } catch (error){
+      setError(error.message);
+    }
   }
   console.log('Token After Login:' + token);
   if (token) {
-    navigate('/products');
+    navigate('/profile');
   } 
 
   return (
