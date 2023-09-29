@@ -113,3 +113,16 @@ export const loginUser = async (username, password) => {
       console.error(err);
     }
 }
+
+export const fetchUserById = async (userId) => {
+  try {
+    const response = await fetch(`${API_URL}/users/${userId}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch user data (Status: ${response.status})`);
+    }
+    const userData = await response.json();
+    return userData;
+  } catch (error) {
+    throw new Error(`Error fetching user data: ${error.message}`);
+  }
+};

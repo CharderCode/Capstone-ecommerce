@@ -12,6 +12,7 @@ import './App.css'
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [userProfile, setUserProfile] = useState(null);
   return (
     <CartProvider>
       <div>
@@ -21,7 +22,7 @@ function App() {
             <Route path="/products" element={<Products token={token}/>} />
             <Route path="/login" element={<Login token={token} setToken={setToken}/>} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile userProfile={userProfile} />} />
           </Routes>
       </div>
     </CartProvider>
