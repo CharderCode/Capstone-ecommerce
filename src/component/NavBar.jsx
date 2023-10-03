@@ -118,7 +118,7 @@ const NavBar = ({token, setToken}) => {
 
   return (
     <Navbar bg="light" expand="lg" className="custom-navbar">
-      <Navbar.Brand href="/" style={{ marginLeft: '20px', fontSize:'25px' }}>Fake Store LOL</Navbar.Brand>
+      <Navbar.Brand href="/" style={{ marginLeft: '20px', fontSize:'25px' }}>Fake Store</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
